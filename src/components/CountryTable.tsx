@@ -9,6 +9,7 @@ interface CountryTableProps {
 }
 
 type SortDir = "asc" | "desc" | null;
+type SortCol = "population" | "area";
 
 function formatPopulation(pop: number): string {
   if (pop >= 1_000_000_000) return `${(pop / 1_000_000_000).toFixed(2)}B`;
@@ -23,28 +24,42 @@ function formatArea(area: number): string {
   return `${area} km²`;
 }
 
-function sortIndicator(dir: SortDir): string {
-  if (dir === "asc") return " ▲";
-  if (dir === "desc") return " ▼";
-  return " ⇅";
+function sortIndicator(col: SortCol, activeCol: SortCol | null, dir: SortDir): string {
+  if (activeCol !== col || !dir) return " ⇅";
+  return dir === "asc" ? " ▲" : " ▼";
 }
 
 export default function CountryTable({ countries, onHover, onClick }: CountryTableProps) {
-  const [popSort, setPopSort] = useState<SortDir>(null);
+  const [sortCol, setSortCol] = useState<SortCol | null>(null);
+  const [sortDir, setSortDir] = useState<SortDir>(null);
 
   const sorted = useMemo(() => {
-    if (!popSort) return countries;
-    return [...countries].sort((a, b) =>
-      popSort === "asc" ? a.population - b.population : b.population - a.population
-    );
-  }, [countries, popSort]);
+    if (!sortCol || !sortDir) return countries;
 
-  const cycleSort = () => {
-    setPopSort((prev) => {
-      if (prev === null) return "desc";
-      if (prev === "desc") return "asc";
-      return null;
+    return [...countries].sort((a, b) => {
+      let va: number, vb: number;
+      if (sortCol === "population") {
+        va = a.population;
+        vb = b.population;
+      } else {
+        va = countryDetails[a.name]?.areaSqKm ?? 0;
+        vb = countryDetails[b.name]?.areaSqKm ?? 0;
+      }
+      return sortDir === "asc" ? va - vb : vb - va;
     });
+  }, [countries, sortCol, sortDir]);
+
+  const cycleSort = (col: SortCol) => {
+    if (sortCol !== col) {
+      setSortCol(col);
+      setSortDir("desc");
+    } else {
+      setSortDir((prev) => {
+        if (prev === "desc") return "asc";
+        setSortCol(null);
+        return null;
+      });
+    }
   };
 
   return (
@@ -55,10 +70,12 @@ export default function CountryTable({ countries, onHover, onClick }: CountryTab
             <th>Flag</th>
             <th>Country</th>
             <th>Capital</th>
-            <th className="sortable-th" onClick={cycleSort}>
-              Population{sortIndicator(popSort)}
+            <th className="sortable-th" onClick={() => cycleSort("population")}>
+              Population{sortIndicator("population", sortCol, sortDir)}
             </th>
-            <th>Area</th>
+            <th className="sortable-th" onClick={() => cycleSort("area")}>
+              Area{sortIndicator("area", sortCol, sortDir)}
+            </th>
             <th>Languages</th>
             <th>Continent</th>
           </tr>
