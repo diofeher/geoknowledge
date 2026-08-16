@@ -1,0 +1,404 @@
+/* ── Layout ── */
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.app-header {
+  padding: 20px 32px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: var(--text);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.app-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── Map Panel ── */
+.map-panel {
+  width: 420px;
+  min-width: 420px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.map-container {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+}
+
+.map-info {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow);
+  z-index: 1000;
+}
+
+.map-info-flag {
+  font-size: 28px;
+}
+
+.map-info-name {
+  font-weight: 600;
+  color: var(--text-h);
+  font-size: 16px;
+}
+
+/* ── List Panel ── */
+.list-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 20px 24px 0;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.results-count {
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* ── Search ── */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  transition: border-color 0.2s;
+}
+
+.search-bar:focus-within {
+  border-color: var(--accent);
+}
+
+.search-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.search-bar input {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: var(--text-h);
+  width: 100%;
+  font-family: var(--sans);
+}
+
+.search-bar input::placeholder {
+  color: var(--text);
+  opacity: 0.6;
+}
+
+/* ── Continent Filter ── */
+.continent-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text);
+}
+
+.continent-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--sans);
+}
+
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.chip-active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.chip-active:hover {
+  color: #fff;
+  opacity: 0.9;
+}
+
+/* ── Table ── */
+.table-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.country-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.country-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.country-table th {
+  background: var(--code-bg);
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+
+.sortable-th {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s;
+}
+
+.sortable-th:hover {
+  color: var(--accent);
+}
+
+.country-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-h);
+}
+
+.country-table tbody tr {
+  transition: background 0.12s;
+  cursor: pointer;
+}
+
+.country-table tbody tr:hover {
+  background: var(--accent-bg);
+}
+
+.country-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.flag-cell {
+  font-size: 24px;
+  width: 48px;
+  text-align: center;
+}
+
+.country-name {
+  font-weight: 600;
+}
+
+.population {
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+/* ── Tags ── */
+.language-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.continent-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--social-bg);
+  font-size: 12px;
+  color: var(--text);
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px 20px !important;
+  color: var(--text);
+  font-style: italic;
+}
+
+/* ── Detail Overlay ── */
+.detail-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+}
+
+.detail-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 520px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.detail-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--text);
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.detail-close:hover {
+  background: var(--code-bg);
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.detail-flag {
+  font-size: 48px;
+}
+
+.detail-name {
+  margin: 0;
+  font-size: 22px;
+  color: var(--text-h);
+}
+
+.detail-name-pt {
+  margin: 2px 0 0;
+  font-size: 14px;
+  color: var(--text);
+  font-style: italic;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.detail-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text);
+}
+
+.detail-value {
+  font-size: 15px;
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+.hdi-badge {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .app-body {
+    flex-direction: column;
+  }
+
+  .map-panel {
+    width: 100%;
+    min-width: 100%;
+    height: 300px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
