@@ -251,9 +251,11 @@
   font-weight: 600;
 }
 
-.population {
+.population,
+.area {
   font-family: var(--mono);
   font-size: 13px;
+  white-space: nowrap;
 }
 
 /* ── Tags ── */

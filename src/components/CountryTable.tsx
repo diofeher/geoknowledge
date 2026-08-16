@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import type { Country } from "../data/countries";
+import { countryDetails } from "../data/countryDetails";
 
 interface CountryTableProps {
   countries: Country[];
@@ -14,6 +15,12 @@ function formatPopulation(pop: number): string {
   if (pop >= 1_000_000) return `${(pop / 1_000_000).toFixed(1)}M`;
   if (pop >= 1_000) return `${(pop / 1_000).toFixed(1)}K`;
   return pop.toString();
+}
+
+function formatArea(area: number): string {
+  if (area >= 1_000_000) return `${(area / 1_000_000).toFixed(2)}M km²`;
+  if (area >= 1_000) return `${(area / 1_000).toFixed(1)}K km²`;
+  return `${area} km²`;
 }
 
 function sortIndicator(dir: SortDir): string {
@@ -51,6 +58,7 @@ export default function CountryTable({ countries, onHover, onClick }: CountryTab
             <th className="sortable-th" onClick={cycleSort}>
               Population{sortIndicator(popSort)}
             </th>
+            <th>Area</th>
             <th>Languages</th>
             <th>Continent</th>
           </tr>
@@ -58,36 +66,40 @@ export default function CountryTable({ countries, onHover, onClick }: CountryTab
         <tbody>
           {sorted.length === 0 ? (
             <tr>
-              <td colSpan={6} className="no-results">
+              <td colSpan={7} className="no-results">
                 No countries match your filters.
               </td>
             </tr>
           ) : (
-            sorted.map((country) => (
-              <tr
-                key={country.name}
-                onMouseEnter={() => onHover(country)}
-                onMouseLeave={() => {}}
-                onClick={() => onClick(country)}
-              >
-                <td className="flag-cell">{country.flag}</td>
-                <td className="country-name">{country.name}</td>
-                <td>{country.capital}</td>
-                <td className="population">{formatPopulation(country.population)}</td>
-                <td>
-                  <div className="language-tags">
-                    {country.languages.map((lang) => (
-                      <span key={lang} className="tag">
-                        {lang}
-                      </span>
-                    ))}
-                  </div>
-                </td>
-                <td>
-                  <span className="continent-badge">{country.continent}</span>
-                </td>
-              </tr>
-            ))
+            sorted.map((country) => {
+              const details = countryDetails[country.name];
+              return (
+                <tr
+                  key={country.name}
+                  onMouseEnter={() => onHover(country)}
+                  onMouseLeave={() => {}}
+                  onClick={() => onClick(country)}
+                >
+                  <td className="flag-cell">{country.flag}</td>
+                  <td className="country-name">{country.name}</td>
+                  <td>{country.capital}</td>
+                  <td className="population">{formatPopulation(country.population)}</td>
+                  <td className="area">{details ? formatArea(details.areaSqKm) : "—"}</td>
+                  <td>
+                    <div className="language-tags">
+                      {country.languages.map((lang) => (
+                        <span key={lang} className="tag">
+                          {lang}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+                  <td>
+                    <span className="continent-badge">{country.continent}</span>
+                  </td>
+                </tr>
+              );
+            })
           )}
         </tbody>
       </table>
