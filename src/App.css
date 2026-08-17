@@ -298,6 +298,25 @@
   font-weight: 600;
 }
 
+.territory-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--social-bg);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text);
+  vertical-align: middle;
+}
+
+.detail-sovereign {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
 .population,
 .area {
   font-family: var(--mono);

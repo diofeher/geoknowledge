@@ -98,7 +98,14 @@ export default function CountryTable({ countries, onHover, onClick }: CountryTab
                   onClick={() => onClick(country)}
                 >
                   <td className="flag-cell">{country.flag}</td>
-                  <td className="country-name">{country.name}</td>
+                  <td className="country-name">
+                    {country.name}
+                    {country.isTerritory && (
+                      <span className="territory-badge" title={`Territory of ${country.sovereignState}`}>
+                        {country.sovereignState}
+                      </span>
+                    )}
+                  </td>
                   <td>{country.capital}</td>
                   <td className="population">{formatPopulation(country.population)}</td>
                   <td className="area">{details ? formatArea(details.areaSqKm) : "—"}</td>

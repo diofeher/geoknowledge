@@ -35,6 +35,9 @@ export default function CountryDetail({ country, onClose }: CountryDetailProps) 
           <div>
             <h2 className="detail-name">{country.name}</h2>
             <p className="detail-name-pt">{country.namePt}</p>
+            {country.isTerritory && (
+              <p className="detail-sovereign">Territory of {country.sovereignState}</p>
+            )}
           </div>
         </div>
 

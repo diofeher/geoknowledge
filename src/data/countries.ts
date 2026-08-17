@@ -14,6 +14,8 @@ export interface Country {
   currencyCode?: string;
   callingCode?: string;
   drivingSide?: "right" | "left";
+  isTerritory?: boolean;
+  sovereignState?: string;
 }
 
 export const countries: Country[] = [
@@ -223,6 +225,61 @@ export const countries: Country[] = [
   { name: "Tonga", namePt: "Tonga", capital: "Nukuʻalofa", population: 106858, languages: ["Tongan", "English"], continent: "Oceania", flag: "🇹🇴", lat: -21.18, lng: -175.20 },
   { name: "Tuvalu", namePt: "Tuvalu", capital: "Funafuti", population: 11312, languages: ["Tuvaluan", "English"], continent: "Oceania", flag: "🇹🇻", lat: -7.11, lng: 177.65 },
   { name: "Vanuatu", namePt: "Vanuatu", capital: "Port Vila", population: 326740, languages: ["Bislama", "English", "French"], continent: "Oceania", flag: "🇻🇺", lat: -15.38, lng: 166.96 },
+
+  // ── Territories & Dependencies ──
+  // France
+  { name: "French Guiana", namePt: "Guiana Francesa", capital: "Cayenne", population: 304557, languages: ["French"], continent: "South America", flag: "🇬🇫", lat: 4.94, lng: -52.33, isTerritory: true, sovereignState: "France" },
+  { name: "Guadeloupe", namePt: "Guadalupe", capital: "Basse-Terre", population: 395700, languages: ["French"], continent: "North America", flag: "🇬🇵", lat: 16.00, lng: -61.73, isTerritory: true, sovereignState: "France" },
+  { name: "Martinique", namePt: "Martinica", capital: "Fort-de-France", population: 375265, languages: ["French"], continent: "North America", flag: "🇲🇶", lat: 14.60, lng: -61.07, isTerritory: true, sovereignState: "France" },
+  { name: "Réunion", namePt: "Reunião", capital: "Saint-Denis", population: 906000, languages: ["French"], continent: "Africa", flag: "🇷🇪", lat: -20.88, lng: 55.45, isTerritory: true, sovereignState: "France" },
+  { name: "Mayotte", namePt: "Maiote", capital: "Mamoudzou", population: 326101, languages: ["French"], continent: "Africa", flag: "🇾🇹", lat: -12.78, lng: 45.23, isTerritory: true, sovereignState: "France" },
+  { name: "New Caledonia", namePt: "Nova Caledônia", capital: "Nouméa", population: 289950, languages: ["French"], continent: "Oceania", flag: "🇳🇨", lat: -22.28, lng: 166.46, isTerritory: true, sovereignState: "France" },
+  { name: "French Polynesia", namePt: "Polinésia Francesa", capital: "Papeete", population: 280904, languages: ["French", "Tahitian"], continent: "Oceania", flag: "🇵🇫", lat: -17.53, lng: -149.57, isTerritory: true, sovereignState: "France" },
+  { name: "Wallis and Futuna", namePt: "Wallis e Futuna", capital: "Mata-Utu", population: 11361, languages: ["French"], continent: "Oceania", flag: "🇼🇫", lat: -14.29, lng: -178.12, isTerritory: true, sovereignState: "France" },
+  { name: "Saint Pierre and Miquelon", namePt: "São Pedro e Miquelão", capital: "Saint-Pierre", population: 5997, languages: ["French"], continent: "North America", flag: "🇵🇲", lat: 46.78, lng: -56.18, isTerritory: true, sovereignState: "France" },
+  { name: "Saint Barthélemy", namePt: "São Bartolomeu", capital: "Gustavia", population: 10585, languages: ["French"], continent: "North America", flag: "🇧🇱", lat: 17.90, lng: -62.83, isTerritory: true, sovereignState: "France" },
+  { name: "Saint Martin", namePt: "São Martinho", capital: "Marigot", population: 32358, languages: ["French"], continent: "North America", flag: "🇲🇫", lat: 18.07, lng: -63.05, isTerritory: true, sovereignState: "France" },
+
+  // United Kingdom
+  { name: "Bermuda", namePt: "Bermudas", capital: "Hamilton", population: 64055, languages: ["English"], continent: "North America", flag: "🇧🇲", lat: 32.29, lng: -64.78, isTerritory: true, sovereignState: "United Kingdom" },
+  { name: "Cayman Islands", namePt: "Ilhas Cayman", capital: "George Town", population: 68136, languages: ["English"], continent: "North America", flag: "🇰🇾", lat: 19.30, lng: -81.38, isTerritory: true, sovereignState: "United Kingdom" },
+  { name: "British Virgin Islands", namePt: "Ilhas Virgens Britânicas", capital: "Road Town", population: 31122, languages: ["English"], continent: "North America", flag: "🇻🇬", lat: 18.42, lng: -64.62, isTerritory: true, sovereignState: "United Kingdom" },
+  { name: "Turks and Caicos Islands", namePt: "Ilhas Turcas e Caicos", capital: "Cockburn Town", population: 45703, languages: ["English"], continent: "North America", flag: "🇹🇨", lat: 21.46, lng: -71.14, isTerritory: true, sovereignState: "United Kingdom" },
+  { name: "Gibraltar", namePt: "Gibraltar", capital: "Gibraltar", population: 34003, languages: ["English"], continent: "Europe", flag: "🇬🇮", lat: 36.14, lng: -5.35, isTerritory: true, sovereignState: "United Kingdom" },
+  { name: "Falkland Islands", namePt: "Ilhas Malvinas", capital: "Stanley", population: 3662, languages: ["English"], continent: "South America", flag: "🇫🇰", lat: -51.70, lng: -57.85, isTerritory: true, sovereignState: "United Kingdom" },
+  { name: "Anguilla", namePt: "Anguila", capital: "The Valley", population: 15753, languages: ["English"], continent: "North America", flag: "🇦🇮", lat: 18.22, lng: -63.07, isTerritory: true, sovereignState: "United Kingdom" },
+  { name: "Montserrat", namePt: "Montserrat", capital: "Brades", population: 4390, languages: ["English"], continent: "North America", flag: "🇲🇸", lat: 16.79, lng: -62.21, isTerritory: true, sovereignState: "United Kingdom" },
+  { name: "Isle of Man", namePt: "Ilha de Man", capital: "Douglas", population: 84069, languages: ["English", "Manx"], continent: "Europe", flag: "🇮🇲", lat: 54.15, lng: -4.48, isTerritory: true, sovereignState: "United Kingdom" },
+  { name: "Jersey", namePt: "Jersey", capital: "Saint Helier", population: 103267, languages: ["English", "French"], continent: "Europe", flag: "🇯🇪", lat: 49.21, lng: -2.13, isTerritory: true, sovereignState: "United Kingdom" },
+  { name: "Guernsey", namePt: "Guernsey", capital: "Saint Peter Port", population: 63085, languages: ["English", "French"], continent: "Europe", flag: "🇬🇬", lat: 49.45, lng: -2.54, isTerritory: true, sovereignState: "United Kingdom" },
+
+  // United States
+  { name: "Puerto Rico", namePt: "Porto Rico", capital: "San Juan", population: 3221789, languages: ["Spanish", "English"], continent: "North America", flag: "🇵🇷", lat: 18.47, lng: -66.11, isTerritory: true, sovereignState: "United States" },
+  { name: "U.S. Virgin Islands", namePt: "Ilhas Virgens Americanas", capital: "Charlotte Amalie", population: 87146, languages: ["English"], continent: "North America", flag: "🇻🇮", lat: 18.34, lng: -64.93, isTerritory: true, sovereignState: "United States" },
+  { name: "Guam", namePt: "Guam", capital: "Hagåtña", population: 170534, languages: ["English", "Chamorro"], continent: "Oceania", flag: "🇬🇺", lat: 13.47, lng: 144.75, isTerritory: true, sovereignState: "United States" },
+  { name: "American Samoa", namePt: "Samoa Americana", capital: "Pago Pago", population: 46366, languages: ["Samoan", "English"], continent: "Oceania", flag: "🇦🇸", lat: -14.28, lng: -170.70, isTerritory: true, sovereignState: "United States" },
+  { name: "Northern Mariana Islands", namePt: "Ilhas Marianas do Norte", capital: "Saipan", population: 47329, languages: ["English", "Chamorro", "Carolinian"], continent: "Oceania", flag: "🇲🇵", lat: 15.18, lng: 145.75, isTerritory: true, sovereignState: "United States" },
+
+  // Denmark
+  { name: "Greenland", namePt: "Groenlândia", capital: "Nuuk", population: 56421, languages: ["Greenlandic", "Danish"], continent: "North America", flag: "🇬🇱", lat: 64.18, lng: -51.72, isTerritory: true, sovereignState: "Denmark" },
+  { name: "Faroe Islands", namePt: "Ilhas Faroé", capital: "Tórshavn", population: 54000, languages: ["Faroese", "Danish"], continent: "Europe", flag: "🇫🇴", lat: 62.01, lng: -6.77, isTerritory: true, sovereignState: "Denmark" },
+
+  // Netherlands
+  { name: "Aruba", namePt: "Aruba", capital: "Oranjestad", population: 107204, languages: ["Dutch", "Papiamento"], continent: "South America", flag: "🇦🇼", lat: 12.51, lng: -69.97, isTerritory: true, sovereignState: "Netherlands" },
+  { name: "Curaçao", namePt: "Curaçao", capital: "Willemstad", population: 150563, languages: ["Dutch", "Papiamento"], continent: "South America", flag: "🇨🇼", lat: 12.17, lng: -68.98, isTerritory: true, sovereignState: "Netherlands" },
+  { name: "Sint Maarten", namePt: "São Martinho (Países Baixos)", capital: "Philipsburg", population: 44222, languages: ["Dutch", "English"], continent: "North America", flag: "🇸🇽", lat: 18.04, lng: -63.05, isTerritory: true, sovereignState: "Netherlands" },
+
+  // China
+  { name: "Hong Kong", namePt: "Hong Kong", capital: "Hong Kong", population: 7500700, languages: ["Chinese", "English"], continent: "Asia", flag: "🇭🇰", lat: 22.32, lng: 114.17, isTerritory: true, sovereignState: "China" },
+  { name: "Macau", namePt: "Macau", capital: "Macau", population: 695168, languages: ["Chinese", "Portuguese"], continent: "Asia", flag: "🇲🇴", lat: 22.20, lng: 113.54, isTerritory: true, sovereignState: "China" },
+
+  // New Zealand
+  { name: "Cook Islands", namePt: "Ilhas Cook", capital: "Avarua", population: 15342, languages: ["English", "Cook Islands Māori"], continent: "Oceania", flag: "🇨🇰", lat: -21.24, lng: -159.78, isTerritory: true, sovereignState: "New Zealand" },
+  { name: "Niue", namePt: "Niue", capital: "Alofi", population: 1620, languages: ["Niuean", "English"], continent: "Oceania", flag: "🇳🇺", lat: -19.06, lng: -169.87, isTerritory: true, sovereignState: "New Zealand" },
+
+  // Australia
+  { name: "Norfolk Island", namePt: "Ilha Norfolk", capital: "Kingston", population: 2188, languages: ["English", "Norfuk"], continent: "Oceania", flag: "🇳🇫", lat: -29.04, lng: 167.95, isTerritory: true, sovereignState: "Australia" },
+  { name: "Christmas Island", namePt: "Ilha Christmas", capital: "Flying Fish Cove", population: 1843, languages: ["English"], continent: "Asia", flag: "🇨🇽", lat: -10.42, lng: 105.68, isTerritory: true, sovereignState: "Australia" },
 ];
 
 export const continents = [
