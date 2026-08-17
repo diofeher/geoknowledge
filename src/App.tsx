@@ -55,6 +55,19 @@ export default function App() {
           </button>
         </div>
       </header>
+      {/* Side drawer for mobile filters */}
+      <div className={`drawer-backdrop ${filtersOpen ? "drawer-backdrop-open" : ""}`} onClick={() => setFiltersOpen(false)} />
+      <aside className={`drawer ${filtersOpen ? "drawer-open" : ""}`}>
+        <div className="drawer-header">
+          <h2>Filters</h2>
+          <button className="drawer-close" onClick={() => setFiltersOpen(false)}>✕</button>
+        </div>
+        <div className="drawer-body">
+          <SearchBar value={search} onChange={setSearch} />
+          <ContinentFilter selected={selectedContinents} onChange={setSelectedContinents} />
+        </div>
+      </aside>
+
       <div className="app-body">
         <aside className="map-panel">
           <MapView hoveredCountry={hoveredCountry} />
@@ -66,7 +79,7 @@ export default function App() {
           )}
         </aside>
         <main className="list-panel">
-          <div className={`controls ${filtersOpen ? "controls-open" : ""}`}>
+          <div className="controls">
             <SearchBar value={search} onChange={setSearch} />
             <ContinentFilter selected={selectedContinents} onChange={setSelectedContinents} />
           </div>
