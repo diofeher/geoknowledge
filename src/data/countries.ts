@@ -171,30 +171,32 @@ export const countries: Country[] = [
   { name: "United Kingdom", namePt: "Reino Unido", capital: "London", population: 67736802, languages: ["English"], continent: "Europe", flag: "🇬🇧", lat: 51.51, lng: -0.13 },
   { name: "Vatican City", namePt: "Cidade do Vaticano", capital: "Vatican City", population: 825, languages: ["Italian", "Latin"], continent: "Europe", flag: "🇻🇦", lat: 41.90, lng: 12.45 },
 
-  // ── North America (23) ──
+  // ── North America (16) ──
   { name: "Antigua and Barbuda", namePt: "Antígua e Barbuda", capital: "St. John's", population: 103650, languages: ["English"], continent: "North America", flag: "🇦🇬", lat: 17.06, lng: -61.80 },
   { name: "Bahamas", namePt: "Bahamas", capital: "Nassau", population: 412623, languages: ["English"], continent: "North America", flag: "🇧🇸", lat: 25.03, lng: -77.40 },
   { name: "Barbados", namePt: "Barbados", capital: "Bridgetown", population: 281995, languages: ["English"], continent: "North America", flag: "🇧🇧", lat: 13.19, lng: -59.54 },
-  { name: "Belize", namePt: "Belize", capital: "Belmopan", population: 410825, languages: ["English"], continent: "North America", flag: "🇧🇿", lat: 17.19, lng: -88.50 },
   { name: "Canada", namePt: "Canadá", capital: "Ottawa", population: 40097761, languages: ["English", "French"], continent: "North America", flag: "🇨🇦", lat: 45.42, lng: -75.7 },
-  { name: "Costa Rica", namePt: "Costa Rica", capital: "San José", population: 5212173, languages: ["Spanish"], continent: "North America", flag: "🇨🇷", lat: 9.75, lng: -83.75 },
   { name: "Cuba", namePt: "Cuba", capital: "Havana", population: 11089511, languages: ["Spanish"], continent: "North America", flag: "🇨🇺", lat: 23.11, lng: -82.37 },
   { name: "Dominica", namePt: "Dominica", capital: "Roseau", population: 72737, languages: ["English"], continent: "North America", flag: "🇩🇲", lat: 15.41, lng: -61.37 },
   { name: "Dominican Republic", namePt: "República Dominicana", capital: "Santo Domingo", population: 11228821, languages: ["Spanish"], continent: "North America", flag: "🇩🇴", lat: 18.74, lng: -70.16 },
-  { name: "El Salvador", namePt: "El Salvador", capital: "San Salvador", population: 6364943, languages: ["Spanish"], continent: "North America", flag: "🇸🇻", lat: 13.79, lng: -88.90 },
   { name: "Grenada", namePt: "Granada", capital: "St. George's", population: 125438, languages: ["English"], continent: "North America", flag: "🇬🇩", lat: 12.12, lng: -61.68 },
-  { name: "Guatemala", namePt: "Guatemala", capital: "Guatemala City", population: 17602431, languages: ["Spanish"], continent: "North America", flag: "🇬🇹", lat: 14.63, lng: -90.51 },
   { name: "Haiti", namePt: "Haiti", capital: "Port-au-Prince", population: 11724763, languages: ["French", "Haitian Creole"], continent: "North America", flag: "🇭🇹", lat: 18.97, lng: -72.29 },
-  { name: "Honduras", namePt: "Honduras", capital: "Tegucigalpa", population: 10432860, languages: ["Spanish"], continent: "North America", flag: "🇭🇳", lat: 15.20, lng: -86.24 },
   { name: "Jamaica", namePt: "Jamaica", capital: "Kingston", population: 2827695, languages: ["English"], continent: "North America", flag: "🇯🇲", lat: 18.11, lng: -77.30 },
   { name: "Mexico", namePt: "México", capital: "Mexico City", population: 128901000, languages: ["Spanish"], continent: "North America", flag: "🇲🇽", lat: 19.43, lng: -99.13 },
-  { name: "Nicaragua", namePt: "Nicarágua", capital: "Managua", population: 6948392, languages: ["Spanish"], continent: "North America", flag: "🇳🇮", lat: 12.87, lng: -85.21 },
-  { name: "Panama", namePt: "Panamá", capital: "Panama City", population: 4408581, languages: ["Spanish"], continent: "North America", flag: "🇵🇦", lat: 8.54, lng: -80.78 },
   { name: "Saint Kitts and Nevis", namePt: "São Cristóvão e Névis", capital: "Basseterre", population: 47606, languages: ["English"], continent: "North America", flag: "🇰🇳", lat: 17.36, lng: -62.78 },
   { name: "Saint Lucia", namePt: "Santa Lúcia", capital: "Castries", population: 180251, languages: ["English"], continent: "North America", flag: "🇱🇨", lat: 13.91, lng: -60.98 },
   { name: "Saint Vincent and the Grenadines", namePt: "São Vicente e Granadinas", capital: "Kingstown", population: 103698, languages: ["English"], continent: "North America", flag: "🇻🇨", lat: 12.98, lng: -61.29 },
   { name: "Trinidad and Tobago", namePt: "Trinidad e Tobago", capital: "Port of Spain", population: 1531044, languages: ["English"], continent: "North America", flag: "🇹🇹", lat: 10.69, lng: -61.22 },
   { name: "United States", namePt: "Estados Unidos", capital: "Washington, D.C.", population: 331900000, languages: ["English"], continent: "North America", flag: "🇺🇸", lat: 38.91, lng: -77.04 },
+
+  // ── Central America (7) ──
+  { name: "Belize", namePt: "Belize", capital: "Belmopan", population: 410825, languages: ["English"], continent: "Central America", flag: "🇧🇿", lat: 17.19, lng: -88.50 },
+  { name: "Costa Rica", namePt: "Costa Rica", capital: "San José", population: 5212173, languages: ["Spanish"], continent: "Central America", flag: "🇨🇷", lat: 9.75, lng: -83.75 },
+  { name: "El Salvador", namePt: "El Salvador", capital: "San Salvador", population: 6364943, languages: ["Spanish"], continent: "Central America", flag: "🇸🇻", lat: 13.79, lng: -88.90 },
+  { name: "Guatemala", namePt: "Guatemala", capital: "Guatemala City", population: 17602431, languages: ["Spanish"], continent: "Central America", flag: "🇬🇹", lat: 14.63, lng: -90.51 },
+  { name: "Honduras", namePt: "Honduras", capital: "Tegucigalpa", population: 10432860, languages: ["Spanish"], continent: "Central America", flag: "🇭🇳", lat: 15.20, lng: -86.24 },
+  { name: "Nicaragua", namePt: "Nicarágua", capital: "Managua", population: 6948392, languages: ["Spanish"], continent: "Central America", flag: "🇳🇮", lat: 12.87, lng: -85.21 },
+  { name: "Panama", namePt: "Panamá", capital: "Panama City", population: 4408581, languages: ["Spanish"], continent: "Central America", flag: "🇵🇦", lat: 8.54, lng: -80.78 },
 
   // ── South America (12) ──
   { name: "Argentina", namePt: "Argentina", capital: "Buenos Aires", population: 45810000, languages: ["Spanish"], continent: "South America", flag: "🇦🇷", lat: -34.6, lng: -58.38 },
@@ -287,6 +289,7 @@ export const continents = [
   "Asia",
   "Europe",
   "North America",
+  "Central America",
   "South America",
   "Oceania",
 ];
