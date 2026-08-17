@@ -13,6 +13,7 @@ export default function App() {
   const [selectedContinents, setSelectedContinents] = useState<string[]>([]);
   const [hoveredCountry, setHoveredCountry] = useState<Country | null>(null);
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
@@ -32,11 +33,27 @@ export default function App() {
     });
   }, [search, selectedContinents]);
 
+  const activeFilterCount = selectedContinents.length + (search ? 1 : 0);
+
   return (
     <div className="app">
       <header className="app-header">
-        <h1>🌍 GeoKnowledge</h1>
-        <p className="subtitle">Explore countries of the world</p>
+        <div className="header-row">
+          <div>
+            <h1>🌍 GeoKnowledge</h1>
+            <p className="subtitle">Explore countries of the world</p>
+          </div>
+          <button
+            className="hamburger"
+            onClick={() => setFiltersOpen((o) => !o)}
+            aria-label="Toggle filters"
+          >
+            <span className="hamburger-icon">{filtersOpen ? "✕" : "☰"}</span>
+            {!filtersOpen && activeFilterCount > 0 && (
+              <span className="filter-badge">{activeFilterCount}</span>
+            )}
+          </button>
+        </div>
       </header>
       <div className="app-body">
         <aside className="map-panel">
@@ -49,7 +66,7 @@ export default function App() {
           )}
         </aside>
         <main className="list-panel">
-          <div className="controls">
+          <div className={`controls ${filtersOpen ? "controls-open" : ""}`}>
             <SearchBar value={search} onChange={setSearch} />
             <ContinentFilter selected={selectedContinents} onChange={setSelectedContinents} />
           </div>

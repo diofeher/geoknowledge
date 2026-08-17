@@ -12,6 +12,12 @@
   background: var(--bg);
 }
 
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .app-header h1 {
   margin: 0;
   font-size: 28px;
@@ -22,6 +28,47 @@
   color: var(--text);
   font-size: 14px;
   margin-top: 4px;
+}
+
+/* ── Hamburger Button ── */
+.hamburger {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: var(--text-h);
+  font-size: 20px;
+  position: relative;
+  transition: border-color 0.15s;
+}
+
+.hamburger:hover {
+  border-color: var(--accent);
+}
+
+.hamburger-icon {
+  line-height: 1;
+}
+
+.filter-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .app-body {
@@ -392,6 +439,18 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
+  .app-header {
+    padding: 14px 16px;
+  }
+
+  .app-header h1 {
+    font-size: 22px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
   .app-body {
     flex-direction: column;
   }
@@ -402,5 +461,29 @@
     height: 300px;
     border-right: none;
     border-bottom: 1px solid var(--border);
+  }
+
+  .list-panel {
+    padding: 12px 12px 0;
+  }
+
+  .controls {
+    display: none;
+  }
+
+  .controls-open {
+    display: flex;
+    animation: slideDown 0.2s ease-out;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
