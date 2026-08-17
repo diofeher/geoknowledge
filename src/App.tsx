@@ -6,6 +6,7 @@ import SearchBar from "./components/SearchBar";
 import ContinentFilter from "./components/ContinentFilter";
 import CountryTable from "./components/CountryTable";
 import CountryDetail from "./components/CountryDetail";
+import Quiz from "./components/Quiz";
 import "./App.css";
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
   const [hoveredCountry, setHoveredCountry] = useState<Country | null>(null);
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [quizOpen, setQuizOpen] = useState(false);
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
@@ -43,16 +45,21 @@ export default function App() {
             <h1>🌍 GeoKnowledge</h1>
             <p className="subtitle">Explore countries of the world</p>
           </div>
-          <button
-            className="hamburger"
-            onClick={() => setFiltersOpen((o) => !o)}
-            aria-label="Toggle filters"
-          >
-            <span className="hamburger-icon">{filtersOpen ? "✕" : "☰"}</span>
-            {!filtersOpen && activeFilterCount > 0 && (
-              <span className="filter-badge">{activeFilterCount}</span>
-            )}
-          </button>
+          <div className="header-actions">
+            <button className="quiz-launch-btn" onClick={() => setQuizOpen(true)}>
+              🎮 Quiz
+            </button>
+            <button
+              className="hamburger"
+              onClick={() => setFiltersOpen((o) => !o)}
+              aria-label="Toggle filters"
+            >
+              <span className="hamburger-icon">{filtersOpen ? "✕" : "☰"}</span>
+              {!filtersOpen && activeFilterCount > 0 && (
+                <span className="filter-badge">{activeFilterCount}</span>
+              )}
+            </button>
+          </div>
         </div>
       </header>
       {/* Side drawer for mobile filters */}
@@ -97,6 +104,7 @@ export default function App() {
           onClose={() => setSelectedCountry(null)}
         />
       )}
+      {quizOpen && <Quiz onClose={() => setQuizOpen(false)} />}
     </div>
   );
 }

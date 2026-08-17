@@ -30,6 +30,30 @@
   margin-top: 4px;
 }
 
+/* ── Header Actions ── */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quiz-launch-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: opacity 0.15s;
+}
+
+.quiz-launch-btn:hover {
+  opacity: 0.9;
+}
+
 /* ── Hamburger Button ── */
 .hamburger {
   display: none;
