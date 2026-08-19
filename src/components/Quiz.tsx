@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import type { Country } from "../data/countries";
 import { countries } from "../data/countries";
 import MapView from "./MapView";
@@ -83,6 +83,14 @@ export default function Quiz({ onClose }: QuizProps) {
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
   const [mapCountry, setMapCountry] = useState<Country | null>(null);
+  const [showMap, setShowMap] = useState(() => window.innerWidth > 900);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 900px)");
+    const handler = (e: MediaQueryListEvent) => setShowMap(!e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const startQuiz = useCallback((m: QuizMode) => {
     setMode(m);
@@ -191,9 +199,11 @@ export default function Quiz({ onClose }: QuizProps) {
         </div>
 
         <div className="quiz-game-body">
-          <div className="quiz-map-panel">
-            <MapView hoveredCountry={mapCountry} />
-          </div>
+          {showMap && (
+            <div className="quiz-map-panel">
+              <MapView hoveredCountry={mapCountry} />
+            </div>
+          )}
 
           <div className="quiz-question-panel">
             <div className="quiz-prompt">
