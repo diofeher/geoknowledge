@@ -261,13 +261,23 @@ export default function Quiz({ onClose }: QuizProps) {
                   <span className="quiz-feedback-correct">✓ Correct!</span>
                 ) : (
                   <span className="quiz-feedback-wrong">
-                    ✗ Wrong — answer: <strong>{question.correct}</strong>
-                    {mode === "population" && question.countryB && (
-                      <span className="quiz-feedback-detail">
-                        {" "}({question.country.name}: {(question.country.population / 1e6).toFixed(1)}M
-                        {" "}vs {question.countryB.name}: {(question.countryB.population / 1e6).toFixed(1)}M)
+                    ✗ Wrong — answer:{" "}
+                    {mode !== "flag" && (
+                      <span className="quiz-feedback-flag">
+                        {mode === "population" && question.countryB
+                          ? question.correct === question.country.name
+                            ? question.country.flag
+                            : question.countryB.flag
+                          : question.country.flag}{" "}
                       </span>
                     )}
+                    <strong>{question.correct}</strong>
+                  </span>
+                )}
+                {mode === "population" && question.countryB && (
+                  <span className="quiz-feedback-detail">
+                    ({question.country.name}: {(question.country.population / 1e6).toFixed(1)}M
+                    {" "}vs {question.countryB.name}: {(question.countryB.population / 1e6).toFixed(1)}M)
                   </span>
                 )}
                 <button className="quiz-btn quiz-btn-primary quiz-next-btn" onClick={nextQuestion}>
