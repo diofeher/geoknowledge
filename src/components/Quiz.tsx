@@ -272,6 +272,11 @@ export default function Quiz({ onClose }: QuizProps) {
                       </span>
                     )}
                     <strong>{question.correct}</strong>
+                    {mode === "flag" && (
+                      <span className="quiz-feedback-detail">
+                        {" "}— you picked: {selected} {quizCountries.find((c) => c.flag === selected)?.name}
+                      </span>
+                    )}
                   </span>
                 )}
                 {mode === "population" && question.countryB && (
