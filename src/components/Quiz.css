@@ -397,6 +397,27 @@
   white-space: nowrap;
 }
 
+/* ── SR Review Section Heading ── */
+.quiz-review-heading {
+  margin: 24px 0 4px;
+  font-size: 18px;
+  color: var(--text-h);
+  text-align: center;
+}
+
+.quiz-review-subtitle {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 0 16px;
+}
+
+.quiz-mode-review-item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* ── SR Results Stats Grid ── */
 .quiz-sr-results {
   margin: 16px 0 8px;

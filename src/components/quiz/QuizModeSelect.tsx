@@ -1,12 +1,13 @@
 import type { QuizMode } from "../../quiz/types";
-import type { SRStats } from "../../spacedRepetition/useSpacedRepetition";
+import type { SRStats, SRStatsByMode } from "../../spacedRepetition/useSpacedRepetition";
 import "../Quiz.css";
 
 interface QuizModeSelectProps {
   onSelectMode: (mode: QuizMode) => void;
-  onStartReview: () => void;
+  onStartReview: (mode?: QuizMode) => void;
   onClose: () => void;
   srStats: SRStats;
+  srStatsByMode: SRStatsByMode;
 }
 
 const MODES: { key: QuizMode; icon: string; title: string; desc: string }[] = [
@@ -21,6 +22,7 @@ export default function QuizModeSelect({
   onStartReview,
   onClose,
   srStats,
+  srStatsByMode,
 }: QuizModeSelectProps) {
   return (
     <div className="quiz-overlay">
@@ -40,20 +42,41 @@ export default function QuizModeSelect({
               <span className="quiz-mode-desc">{m.desc}</span>
             </button>
           ))}
+        </div>
+
+        <h3 className="quiz-review-heading">🔁 Spaced Review</h3>
+        <p className="quiz-review-subtitle">
+          <span className="quiz-sr-stat">📬 {srStats.due} due</span>
+          <span className="quiz-sr-stat">📖 {srStats.learning} learning</span>
+          <span className="quiz-sr-stat">✅ {srStats.mastered} mastered</span>
+        </p>
+        <div className="quiz-modes">
+          {MODES.map((m) => {
+            const modeStats = srStatsByMode[m.key];
+            return (
+              <button
+                key={`review-${m.key}`}
+                className="quiz-mode-btn quiz-mode-review-item"
+                onClick={() => onStartReview(m.key)}
+                disabled={modeStats.due === 0}
+              >
+                <span className="quiz-mode-icon">{m.icon}</span>
+                <span className="quiz-mode-title">{m.title}</span>
+                <span className="quiz-mode-desc">
+                  {modeStats.due === 0 ? "All caught up!" : `${modeStats.due} due`}
+                </span>
+              </button>
+            );
+          })}
           <button
             className="quiz-mode-btn quiz-mode-review"
-            onClick={onStartReview}
+            onClick={() => onStartReview()}
             disabled={srStats.due === 0}
           >
-            <span className="quiz-mode-icon">🔁</span>
-            <span className="quiz-mode-title">Spaced Review</span>
+            <span className="quiz-mode-icon">🔀</span>
+            <span className="quiz-mode-title">All Modes</span>
             <span className="quiz-mode-desc">
-              {srStats.due === 0 ? "All caught up!" : "Practice cards that are due"}
-            </span>
-            <span className="quiz-sr-stats">
-              <span className="quiz-sr-stat">📬 {srStats.due} due</span>
-              <span className="quiz-sr-stat">📖 {srStats.learning} learning</span>
-              <span className="quiz-sr-stat">✅ {srStats.mastered} mastered</span>
+              {srStats.due === 0 ? "All caught up!" : `${srStats.due} due (mixed)`}
             </span>
           </button>
         </div>

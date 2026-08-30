@@ -34,13 +34,16 @@ export default function Quiz({ onClose }: QuizProps) {
     [session],
   );
 
-  const startReview = useCallback(() => {
-    const dueCards = sr.getDueCards();
+  const [reviewMode, setReviewMode] = useState<QuizMode | undefined>(undefined);
+
+  const startReview = useCallback((filterMode?: QuizMode) => {
+    const dueCards = sr.getDueCards(filterMode);
     if (dueCards.length === 0) return;
     const sampled = sampleSize(dueCards, REVIEW_BATCH_SIZE);
     const refs = sampled.map((c) => ({ countryName: c.countryName, mode: c.mode }));
     const questions = generateQuestionsForRefs(refs);
     if (questions.length === 0) return;
+    setReviewMode(filterMode);
     session.start(questions, true);
     setMapCountry(null);
     questionStartedAt.current = Date.now();
@@ -80,6 +83,7 @@ export default function Quiz({ onClose }: QuizProps) {
         onStartReview={startReview}
         onClose={onClose}
         srStats={sr.stats}
+        srStatsByMode={sr.statsByMode}
       />
     );
   }
@@ -92,7 +96,7 @@ export default function Quiz({ onClose }: QuizProps) {
         totalQuestions={session.totalQuestions}
         isReviewMode={session.isReviewMode}
         srStats={sr.stats}
-        onPlayAgain={session.isReviewMode ? startReview : () => {
+        onPlayAgain={session.isReviewMode ? () => startReview(reviewMode) : () => {
           // Find the mode of the first question to replay the same mode
           const mode = session.questions[0]?.mode;
           if (mode) startClassic(mode);
