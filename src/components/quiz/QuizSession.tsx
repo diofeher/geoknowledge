@@ -8,11 +8,14 @@ import "../Quiz.css";
 interface QuizSessionProps {
   question: Question;
   selected: string | null;
+  isSkipped: boolean;
+  isReviewMode: boolean;
   currentIndex: number;
   totalQuestions: number;
   score: number;
   mapCountry: Country | null;
   onAnswer: (answer: string) => void;
+  onSkip: () => void;
   onNext: () => void;
   onClose: () => void;
 }
@@ -20,11 +23,14 @@ interface QuizSessionProps {
 export default function QuizSession({
   question,
   selected,
+  isSkipped,
+  isReviewMode,
   currentIndex,
   totalQuestions,
   score,
   mapCountry,
   onAnswer,
+  onSkip,
   onNext,
   onClose,
 }: QuizSessionProps) {
@@ -66,7 +72,10 @@ export default function QuizSession({
           <QuizQuestionPrompt
             question={question}
             selected={selected}
+            isSkipped={isSkipped}
+            isReviewMode={isReviewMode}
             onAnswer={onAnswer}
+            onSkip={onSkip}
             onNext={onNext}
             isLast={isLast}
           />

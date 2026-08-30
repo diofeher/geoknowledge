@@ -5,7 +5,10 @@ import "../Quiz.css";
 interface QuizQuestionPromptProps {
   question: Question;
   selected: string | null;
+  isSkipped: boolean;
+  isReviewMode: boolean;
   onAnswer: (answer: string) => void;
+  onSkip: () => void;
   onNext: () => void;
   isLast: boolean;
 }
@@ -13,11 +16,15 @@ interface QuizQuestionPromptProps {
 export default function QuizQuestionPrompt({
   question,
   selected,
+  isSkipped,
+  isReviewMode,
   onAnswer,
+  onSkip,
   onNext,
   isLast,
 }: QuizQuestionPromptProps) {
   const { mode } = question;
+  const isAnswered = selected !== null || isSkipped;
 
   return (
     <div className="quiz-question-panel">
@@ -52,7 +59,7 @@ export default function QuizQuestionPrompt({
       <div className={`quiz-options ${mode === "flag" ? "quiz-options-flags" : ""}`}>
         {question.options.map((opt) => {
           let cls = "quiz-option";
-          if (selected) {
+          if (isAnswered) {
             if (opt === question.correct) cls += " quiz-option-correct";
             else if (opt === selected) cls += " quiz-option-wrong";
             else cls += " quiz-option-dim";
@@ -62,7 +69,7 @@ export default function QuizQuestionPrompt({
               key={opt}
               className={cls}
               onClick={() => onAnswer(opt)}
-              disabled={!!selected}
+              disabled={isAnswered}
             >
               {opt}
             </button>
@@ -70,9 +77,31 @@ export default function QuizQuestionPrompt({
         })}
       </div>
 
-      {selected && (
+      {!isAnswered && isReviewMode && (
+        <div className="quiz-skip-container">
+          <button className="quiz-btn quiz-btn-skip" onClick={onSkip}>
+            ⏭ Don't know — skip
+          </button>
+        </div>
+      )}
+
+      {isAnswered && (
         <div className="quiz-feedback">
-          {selected === question.correct ? (
+          {isSkipped ? (
+            <span className="quiz-feedback-skipped">
+              ⏭ Skipped — answer:{" "}
+              {mode !== "flag" && (
+                <span className="quiz-feedback-flag">
+                  {mode === "population" && question.countryB
+                    ? question.correct === question.country.name
+                      ? question.country.flag
+                      : question.countryB.flag
+                    : question.country.flag}{" "}
+                </span>
+              )}
+              <strong>{question.correct}</strong>
+            </span>
+          ) : selected === question.correct ? (
             <span className="quiz-feedback-correct">✓ Correct!</span>
           ) : (
             <span className="quiz-feedback-wrong">

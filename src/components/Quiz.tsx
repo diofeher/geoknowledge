@@ -70,6 +70,16 @@ export default function Quiz({ onClose }: QuizProps) {
     [session, sr],
   );
 
+  const handleSkip = useCallback(() => {
+    const q = session.currentQuestion;
+    if (!q) return;
+    // Record quality 0 (worst) — "I don't know"
+    if (session.isReviewMode) {
+      sr.recordReview({ countryName: q.country.name, mode: q.mode }, 0);
+    }
+    session.skip();
+  }, [session, sr]);
+
   const handleNext = useCallback(() => {
     session.next();
     questionStartedAt.current = Date.now();
@@ -114,11 +124,14 @@ export default function Quiz({ onClose }: QuizProps) {
     <QuizSession
       question={session.currentQuestion}
       selected={session.selected}
+      isSkipped={session.isSkipped}
+      isReviewMode={session.isReviewMode}
       currentIndex={session.currentIndex}
       totalQuestions={session.totalQuestions}
       score={session.score}
       mapCountry={mapCountry}
       onAnswer={handleAnswer}
+      onSkip={handleSkip}
       onNext={handleNext}
       onClose={onClose}
     />

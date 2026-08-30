@@ -5,7 +5,9 @@ export const initialQuizSessionState: QuizSessionState = {
   questions: [],
   currentIndex: 0,
   selected: null,
+  isSkipped: false,
   score: 0,
+  skipped: 0,
   isReviewMode: false,
 };
 
@@ -20,18 +22,31 @@ export function quizSessionReducer(
         questions: action.questions,
         currentIndex: 0,
         selected: null,
+        isSkipped: false,
         score: 0,
+        skipped: 0,
         isReviewMode: action.isReviewMode,
       };
 
     case "ANSWER": {
-      if (state.selected !== null) return state; // already answered
+      if (state.selected !== null || state.isSkipped) return state;
       const currentQ = state.questions[state.currentIndex];
       const isCorrect = action.answer === currentQ.correct;
       return {
         ...state,
         selected: action.answer,
+        isSkipped: false,
         score: isCorrect ? state.score + 1 : state.score,
+      };
+    }
+
+    case "SKIP": {
+      if (state.selected !== null || state.isSkipped) return state;
+      return {
+        ...state,
+        selected: null,
+        isSkipped: true,
+        skipped: state.skipped + 1,
       };
     }
 
@@ -44,6 +59,7 @@ export function quizSessionReducer(
         ...state,
         currentIndex: nextIndex,
         selected: null,
+        isSkipped: false,
       };
     }
 

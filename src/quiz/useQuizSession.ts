@@ -19,6 +19,10 @@ export function useQuizSession() {
     dispatch({ type: "ANSWER", answer: ans });
   }, []);
 
+  const skip = useCallback(() => {
+    dispatch({ type: "SKIP" });
+  }, []);
+
   const next = useCallback(() => {
     dispatch({ type: "NEXT" });
   }, []);
@@ -41,6 +45,7 @@ export function useQuizSession() {
     totalQuestions: state.questions.length,
     start,
     answer,
+    skip,
     next,
     reset,
   };

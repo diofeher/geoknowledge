@@ -15,12 +15,15 @@ export interface QuizSessionState {
   questions: Question[];
   currentIndex: number;
   selected: string | null;
+  isSkipped: boolean;
   score: number;
+  skipped: number;
   isReviewMode: boolean;
 }
 
 export type QuizSessionAction =
   | { type: "START"; questions: Question[]; isReviewMode: boolean }
   | { type: "ANSWER"; answer: string }
+  | { type: "SKIP" }
   | { type: "NEXT" }
   | { type: "RESET" };
