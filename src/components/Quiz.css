@@ -365,6 +365,70 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ── Spaced Review Mode Select ── */
+.quiz-mode-review {
+  grid-column: 1 / -1;
+  background: var(--accent-bg);
+  border-color: var(--accent);
+}
+
+.quiz-mode-review:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quiz-mode-review:hover:not(:disabled) {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+  filter: brightness(0.95);
+}
+
+.quiz-sr-stats {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.quiz-sr-stat {
+  font-size: 11px;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* ── SR Results Stats Grid ── */
+.quiz-sr-results {
+  margin: 16px 0 8px;
+}
+
+.quiz-sr-results-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.quiz-sr-results-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.quiz-sr-results-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-h);
+  font-family: var(--mono);
+}
+
+.quiz-sr-results-label {
+  font-size: 11px;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .quiz-map-panel {
